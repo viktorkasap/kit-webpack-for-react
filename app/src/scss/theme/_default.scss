@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@500;700&display=swap');
+
+/* COLORS */
+$primary: #5BA4A4FF;
+$gray100: #EFFAFAFF;
+$gray200: #EEF6F6FF;
+$gray800: #7B8E8EFF;
+$gray900: #2C3A3A;
+
+/* FONTS */
+$fsNormal: 15px;
+$fontFamilyPrimary: 'Spartan', sans-serif;
+$fwNormal: 500;
+$fwBold: 700;
+
+$radii: 5px;
+$radiiFull: 50%;
+$shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+* {
+  box-sizing: border-box;
+  font-size: 1.6rem;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-family: $fontFamilyPrimary;
+  font-weight: $fwNormal;
+  font-size: $fsNormal;
+
+  background-color: $gray100;
+}
+
+.container {
+  width: 100%;
+  padding: 0 0.75rem;
+  margin: 0 auto;
+}
+
+.header {
+  min-height: 156px;
+  background-image: url("../svg/bg-header-mobile.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: $primary;
+}
+
+.link {
+  color: $gray800;
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: $fwBold;
+  padding: .5rem;
+}
+.link:hover {
+  color: $primary;
+  text-decoration: underline;
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.card {
+  background-color: #fff;
+  border-radius:$radii;
+  box-shadow: $shadow;
+  border-left: 5px solid $gray100;
+}
+.card--featured {
+  border-left-color: $primary;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  background-color: $gray200;
+  color: $primary;
+  cursor: pointer;
+  border-radius:$radii;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1;
+  min-height: 26px;
+}
+.badge > span {
+  padding: 0.25rem 1rem;
+  font-size: 1.4rem
+}
+.badge:hover {
+  color: $gray100;
+  background-color: $primary;
+}
+.badge.badge--light {
+  font-weight: $fwBold;
+}
+.badge.badge--dark {
+  background-color: $gray900;
+  color: $gray100;
+}
+.badge.badge--primary {
+  background-color: $primary;
+  color: $gray100;
+}
+.badge.badge--clearable {
+  cursor: default;
+}
+.badge.badge--clearable:hover {
+  background-color: $gray200;
+  color: $primary;
+}
+.badge-remover {
+  width: 30px;
+  background-color: $primary;
+  color: $gray100;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5rem;
+  align-self: stretch;
+}
+.badge-remover:hover {
+  background-color: $gray900;
+}
+
+.filter-panel {
+  margin-top: -32px;
+  padding: 10px;
+}
+
+.filter-panel-wrapper {
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.job-position {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+.job-position-info {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid $gray800;
+}
+.job-position-avatar {
+  top: -50px;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+}
+.job-position-body {
+  display: flex;
+  flex-direction: column;
+}
+.job-position-body .badge {
+  font-size: 10px;
+}
+.job-postion-company {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.job-postion-company h3 {
+  margin: 0;
+  font-style: $fsNormal;
+  color: $primary;
+  font-weight: $fwBold;
+}
+.job-position-title {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+.job-position-title:hover {
+  color: $primary;
+}
+.job-position-meta {
+  color: $gray800;
+  position: relative;
+}
+.job-position-meta:not(:last-child) {
+  padding-right: 0.5rem;
+}
+.job-position-meta:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 6px;
+  width: 4px;
+  height: 4px;
+  background-color: $gray800;
+  border-radius: $radiiFull;
+}
+
+.job-list {
+  padding: 3rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .header {
+    background-image: url("../svg/bg-header-desktop.svg");
+  }
+  .container {
+    max-width: 1000px;
+    padding: 0 1.5rem;
+  }
+  .job-position {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .job-position-info {
+    padding: 0;
+    margin-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .job-position-avatar {
+    position: static;
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+  }
+}

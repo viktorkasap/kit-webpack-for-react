@@ -1,0 +1,17 @@
+root = true # Указывает, что текущий корневой каталог проекта
+
+[*] # Все файлы используют конфигурацию
+charset = utf-8 # Формат кодирования
+indent_style = space # Стиль отступа клавиши Tab состоит из пробела и таблицы. Общий код - пробел
+indent_size = 2 # Размер отступа 2
+end_of_line = lf # Обернуть с lf, по умолчанию - crlf mac, а linux - lf
+insert_final_newline = true # Добавляем пустую строку в конец
+trim_trailing_whitespace = true # Удаляем лишние пробелы в конце строки
+
+[*.{md, txt}]
+indent_size = 4
+insert_final_newline = false
+trim_trailing_whitespace = false
+
+[Makefile]
+indent_style = tab
