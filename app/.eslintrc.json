@@ -4,11 +4,12 @@
     "es2021": true
   },
   "extends": [
-    "standard",
-    "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "eslint:recommended",
+    "standard"
   ],
+  "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
@@ -19,20 +20,26 @@
   ],
   "rules": {
     "no-console": "error",
-    "semi": ["error", "always"],
-    "import/order": [ "error", {
-      "groups": [
-        "builtin",
-        "external",
-        "internal",
-        "parent",
-        "sibling",
-        "index",
-        "object",
-        "type"
-      ],
-      "newlines-between": "always"
-    }],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ],
+        "newlines-between": "always"
+      }
+    ],
     "comma-dangle": [
       "error",
       {
@@ -42,5 +49,4 @@
       }
     ]
   }
-
 }

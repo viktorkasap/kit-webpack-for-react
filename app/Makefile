@@ -25,6 +25,3 @@ build-dev: rm-rf-css rm-rf-js
 watch: rm-rf-css rm-rf-js
 	NODE_ENV=development npx webpack --watch
 
-# for browser-sync
-browser:
-	npx browser-sync --watch --no-notify --port 4000 --host 0.0.0.0 public

@@ -2,21 +2,6 @@
 
 Example Filter Positions App (React, Redux)
 
-### Includes packages
-
-- typescript
-- babel
-- axios
-- pug
-- scss
-- autoprefixer
-- lodash
-- yup
-- prettier
-- eslint
-- react
-- redux-toolkit
-
 ### Links
 - Webpack watch options - https://webpack.js.org/configuration/watch
 - Webpack web server - https://webpack.js.org/configuration/dev-server
@@ -29,5 +14,4 @@ Example Filter Positions App (React, Redux)
 4. `➜ app make server`
 5. `➜ app make build-dev` no minify
 6. `➜ app make build-prod` minify
-7. `➜ app make browser`
 
