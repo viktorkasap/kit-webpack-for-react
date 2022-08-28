@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/zsh
 . "$(dirname -- "$0")/_/husky.sh"
 
 make lint
