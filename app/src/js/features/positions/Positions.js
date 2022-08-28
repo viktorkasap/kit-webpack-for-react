@@ -25,7 +25,5 @@ export const Positions = () => {
     dispatch(addedPositions(mockPositions));
   }, [dispatch]);
 
-  console.log('rendered');
-
   return <PositionsRender />;
 };

@@ -6,7 +6,7 @@ bash:
 	docker exec -it ${CONTAINER_NAME} zsh || winpty docker exec -it ${CONTAINER_NAME} zsh
 
 build:
-	docker-compose build --no-cache
+	docker-compose build --no-cache && npm install
 
 up:
 	docker-compose up -d && make bash
