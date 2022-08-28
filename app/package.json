@@ -7,6 +7,7 @@
     "server": "NODE_ENV=development webpack serve",
     "build-dev": "webpack --mode development",
     "watch": "NODE_ENV=development webpack",
+    "lint": "npx eslint --fix src/js",
     "prepare": "husky install"
   },
   "devDependencies": {
