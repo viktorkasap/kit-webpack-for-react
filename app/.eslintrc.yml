@@ -12,6 +12,7 @@ parserOptions:
   sourceType: module
 plugins:
   - react
+  - prettier
 rules: {
   "no-console": "error",
   "semi": ["error", "always"],
