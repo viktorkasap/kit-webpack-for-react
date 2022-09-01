@@ -3,27 +3,14 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import intersection from 'lodash/intersection';
 
-import { Card, Stack, Badge } from '../../components';
+import { Card, Stack, Badge } from '@app/components';
 
 import { selectPositionById } from './PositionsSlice';
 
 export const Position = ({ positionId }) => {
   const filteredPositions = useSelector((state) => state.positions.filtered);
   const positionItem = useSelector((state) => selectPositionById(state, positionId));
-  const {
-    company,
-    logo,
-    new: isNew,
-    featured,
-    position,
-    role,
-    level,
-    postedAt,
-    contract,
-    location,
-    languages,
-    tools,
-  } = positionItem;
+  const { company, logo, new: isNew, featured, position, role, level, postedAt, contract, location, languages, tools } = positionItem;
   const badges = [role, level, ...languages, ...tools];
 
   const filteredIntersection = intersection(filteredPositions, badges);

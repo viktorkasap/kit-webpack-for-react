@@ -3,19 +3,31 @@
     "browser": true,
     "es2021": true
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "extends": [
+    "standard",
+    "eslint:recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
-    "eslint:recommended",
-    "standard"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "prettier"
   ],
-  "overrides": [],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "plugins": [
     "react",
+    "@typescript-eslint",
     "prettier"
   ],
   "rules": {
@@ -27,17 +39,36 @@
     "import/order": [
       "error",
       {
+        "newlines-between": "always",
+        "pathGroups": [
+          {
+            "pattern": "@app/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@components/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "./**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
         "groups": [
           "builtin",
           "external",
-          "internal",
           "parent",
           "sibling",
           "index",
           "object",
           "type"
         ],
-        "newlines-between": "always"
+        "pathGroupsExcludedImportTypes": [
+          "builtin"
+        ]
       }
     ],
     "comma-dangle": [
@@ -46,6 +77,17 @@
         "functions": "only-multiline",
         "objects": "only-multiline",
         "arrays": "only-multiline"
+      }
+    ],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "max-len": [
+      "error",
+      {
+        "code": 140,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignorePattern": "d=\"([\\s\\S]*?)\"" // svg d=...
       }
     ]
   }

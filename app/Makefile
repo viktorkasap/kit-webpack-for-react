@@ -11,10 +11,12 @@ server:
 	NODE_ENV=development npx webpack serve
 
 pretty:
-	npx prettier --write src/scss && npx prettier --write src/js
+	npx prettier --write src
 
 lint:
-	npx eslint --fix src/js
+	npx eslint --fix src
+
+pre-commit: pretty lint
 
 build-prod: rm-rf-css rm-rf-js pretty lint
 	NODE_ENV=production npx webpack --mode production

@@ -1,11 +1,12 @@
 # About
 
-Example Filter Positions App (React, Redux)
+Example Filter Positions App 
+
+::: React, Redux, EmotionJS
 
 ### Links
 - Webpack watch options - https://webpack.js.org/configuration/watch
 - Webpack web server - https://webpack.js.org/configuration/dev-server
-- MicroModal - https://micromodal.vercel.app/#configuration
 
 ### Process 
 1. `make build`

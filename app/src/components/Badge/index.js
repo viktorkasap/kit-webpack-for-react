@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
-import { RemoveIcon } from '../icons';
-import { addedFilteredPositions } from '../features/positions/PositionsSlice';
+import { addedFilteredPositions } from '@app/features/positions/PositionsSlice';
+
+import { BadgeWrapper, BadgeText, BadgeClose, BadgeCloseWrapper } from './styled';
 
 export const Badge = ({ variant = 'basic', colorScheme = 'light', children, onClear, noClickable = false }) => {
   const dispatch = useDispatch();
@@ -13,24 +14,24 @@ export const Badge = ({ variant = 'basic', colorScheme = 'light', children, onCl
   };
 
   return (
-    <div className={`badge badge--${variant} badge--${colorScheme}`}>
-      {noClickable && <span>{children}</span>}
-      {!noClickable && <span onClick={handleFilter(children)}>{children}</span>}
+    <BadgeWrapper variant={variant} colorScheme={colorScheme}>
+      {noClickable && <BadgeText>{children}</BadgeText>}
+      {!noClickable && <BadgeText onClick={handleFilter(children)}>{children}</BadgeText>}
       {variant === 'clearable' && (
         <>
           {noClickable && (
-            <div className="badge-remover">
-              <RemoveIcon />
-            </div>
+            <BadgeCloseWrapper>
+              <span className="material-symbols-rounded">close</span>
+            </BadgeCloseWrapper>
           )}
           {!noClickable && (
-            <div className="badge-remover" onClick={onClear}>
-              <RemoveIcon />
-            </div>
+            <BadgeCloseWrapper onClick={onClear}>
+              <BadgeClose className="material-icons-sharp">close</BadgeClose>
+            </BadgeCloseWrapper>
           )}
         </>
       )}
-    </div>
+    </BadgeWrapper>
   );
 };
 

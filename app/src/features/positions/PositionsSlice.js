@@ -29,7 +29,6 @@ export const {
   selectIds: selectPositionsIds,
 } = positionsAdapter.getSelectors((state) => state.positions);
 
-export const { addedPositions, addedFilteredPositions, clearedFilteredPositions, removedItemFilteredPositions } =
-  positionSlice.actions;
+export const { addedPositions, addedFilteredPositions, clearedFilteredPositions, removedItemFilteredPositions } = positionSlice.actions;
 
 export default positionSlice.reducer;

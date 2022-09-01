@@ -1,10 +1,14 @@
 const path = require('path');
 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const mode = process.env.NODE_ENV;
+
+const paths = {
+  src: path.resolve(__dirname, 'src'),
+  public: path.resolve(__dirname, 'public'),
+};
 
 const plugins = [
   new MiniCssExtractPlugin({
@@ -12,13 +16,34 @@ const plugins = [
   }),
 ];
 
-// HMR FOR REACT
-if (mode !== 'production') {
-  plugins.push(new ReactRefreshWebpackPlugin());
-}
+const resolve = {
+  extensions: ['.js', '.jsx', '.ts', '.tsx'],
+  plugins: [
+    new TsconfigPathsPlugin({
+      configFile: './tsconfig.json',
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    }),
+  ],
+};
+
+const babelPlugins = [
+  [
+    '@emotion',
+    {
+      sourceMap: true,
+      autoLabel: 'dev-only',
+      labelFormat: '[local]',
+      cssPropOptimization: true,
+    },
+  ],
+];
 
 module.exports = {
   mode,
+
+  resolve,
+
+  plugins,
 
   target: mode === 'production' ? 'browserslist' : 'web',
 
@@ -30,9 +55,9 @@ module.exports = {
     port: 3000,
     historyApiFallback: true,
     watchFiles: {
-      paths: ['./public/**/*'],
+      paths: ['public/**/*'],
       options: {
-        ignored: '/node_modules/',
+        ignored: /node_modules/,
         usePolling: true,
       },
     },
@@ -41,26 +66,16 @@ module.exports = {
   watchOptions: {
     poll: 1000,
     aggregateTimeout: 200,
-    ignored: /node_modules/,
+    ignored: '/node_modules/',
   },
 
   entry: {
-    index: './src/js/index.js',
+    index: `${paths.src}/index.js`,
   },
 
   output: {
     filename: 'js/[name].js',
-    path: path.resolve(__dirname, 'public'),
-  },
-
-  resolve: {
-    extensions: ['.js', 'jsx', '.ts', '.tsx'],
-    plugins: [
-      new TsconfigPathsPlugin({
-        configFile: './tsconfig.json',
-        extensions: ['.js', '.ts', '.tsx'],
-      }),
-    ],
+    path: paths.public,
   },
 
   module: {
@@ -73,14 +88,24 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
+            plugins: babelPlugins,
           },
         },
       },
       // TS
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
-        include: [path.resolve(__dirname, 'src/js')],
+        use: [
+          'ts-loader',
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-react', '@babel/preset-typescript'],
+              plugins: babelPlugins,
+            },
+          },
+        ],
+        include: [paths.src],
       },
       // STYLES MODULE
       {
@@ -143,6 +168,4 @@ module.exports = {
       },
     ],
   },
-
-  plugins,
 };
