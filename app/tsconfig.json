@@ -13,19 +13,13 @@
       "@app/*": [
         "./*"
       ],
-      "@components/*": [
-        "./components/*"
-      ],
-      "@icons/*": [
-        "./icons/*"
-      ],
-      "@theme/*": [
-        "./theme/*"
+      "@components": [
+        "./components/index.ts"
       ]
     },
     "resolveJsonModule": true,
     "allowJs": true,
-    "outDir": "public",
+    "outDir": "dist",
     "newLine": "lf",
     "stripInternal": true,
     "noEmitOnError": true,
@@ -34,13 +28,13 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "strict": false,
     "strictPropertyInitialization": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "skipLibCheck": true,
-    "jsx": "react",
+    "jsx": "react"
   },
   "include": [
     "src/**/*"

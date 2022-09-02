@@ -9,21 +9,19 @@
     }
   },
   "extends": [
+    "plugin:react/recommended",
     "standard",
     "eslint:recommended",
-    "plugin:react/recommended",
     "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
   "plugins": [
     "react",
@@ -47,7 +45,7 @@
             "position": "after"
           },
           {
-            "pattern": "@components/**",
+            "pattern": "@components",
             "group": "internal",
             "position": "after"
           },
@@ -58,7 +56,6 @@
           }
         ],
         "groups": [
-          "builtin",
           "external",
           "parent",
           "sibling",
@@ -74,21 +71,31 @@
     "comma-dangle": [
       "error",
       {
-        "functions": "only-multiline",
+        "imports": "only-multiline",
+        "arrays": "only-multiline",
         "objects": "only-multiline",
-        "arrays": "only-multiline"
+        "functions": "only-multiline"
       }
     ],
-    "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "varsIgnorePattern": "React"
+      }
+    ],
     "max-len": [
       "error",
       {
         "code": 140,
         "ignoreUrls": true,
         "ignoreStrings": true,
+        "ignoreComments": true,
         "ignorePattern": "d=\"([\\s\\S]*?)\"" // svg d=...
       }
-    ]
+    ],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
   }
 }
