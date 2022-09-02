@@ -21,6 +21,8 @@ import {
 
 import { TitleH1 } from '@components'; // OR @app/component
 
+console.log('ddd');
+
 const App = () => {
   const [count, setCount] = useState(0);
   return (
