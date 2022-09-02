@@ -14,7 +14,7 @@ pretty:
 	npx prettier --write src
 
 lint:
-	npx eslint --fix src/**/*.ts
+	npx eslint --fix "src/**"
 
 pre-commit: pretty lint
 
