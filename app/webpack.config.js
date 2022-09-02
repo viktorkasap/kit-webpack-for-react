@@ -1,6 +1,6 @@
 const path = require('path');
 
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const mode = process.env.NODE_ENV;
@@ -8,22 +8,16 @@ const mode = process.env.NODE_ENV;
 const paths = {
   src: path.resolve(__dirname, 'src'),
   public: path.resolve(__dirname, 'public'),
+  output: path.resolve(__dirname, 'dist'),
+  watchFiles: path.resolve(__dirname, 'src/**/*'),
+  entry: {
+    index: path.resolve(__dirname, 'src/index.js'),
+  },
+  template: path.resolve(__dirname, 'public/index.html'),
 };
 
-const plugins = [
-  new MiniCssExtractPlugin({
-    filename: 'css/[name].css',
-  }),
-];
-
-const resolve = {
-  extensions: ['.js', '.jsx', '.ts', '.tsx'],
-  plugins: [
-    new TsconfigPathsPlugin({
-      configFile: './tsconfig.json',
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    }),
-  ],
+const alias = {
+  '@app': paths.src,
 };
 
 const babelPlugins = [
@@ -41,10 +35,6 @@ const babelPlugins = [
 module.exports = {
   mode,
 
-  resolve,
-
-  plugins,
-
   target: mode === 'production' ? 'browserslist' : 'web',
 
   devtool: 'source-map',
@@ -55,7 +45,7 @@ module.exports = {
     port: 3000,
     historyApiFallback: true,
     watchFiles: {
-      paths: ['public/**/*'],
+      paths: [paths.watchFiles],
       options: {
         ignored: /node_modules/,
         usePolling: true,
@@ -70,17 +60,17 @@ module.exports = {
   },
 
   entry: {
-    index: `${paths.src}/index.js`,
+    index: paths.entry.index,
   },
 
   output: {
     filename: 'js/[name].js',
-    path: paths.public,
+    path: paths.output,
   },
 
   module: {
     rules: [
-      // JS
+      /* JS/JSX */
       {
         test: /\.jsx?$/i,
         exclude: /node_modules/,
@@ -92,22 +82,7 @@ module.exports = {
           },
         },
       },
-      // TS
-      {
-        test: /\.tsx?$/,
-        use: [
-          'ts-loader',
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-react', '@babel/preset-typescript'],
-              plugins: babelPlugins,
-            },
-          },
-        ],
-        include: [paths.src],
-      },
-      // STYLES MODULE
+      /* STYLES MODULE */
       {
         test: /\.module\.(s[ac]|c)ss$/i,
         use: [
@@ -129,7 +104,7 @@ module.exports = {
           'sass-loader',
         ],
       },
-      // STYLES NO MODULE
+      /* STYLES NO MODULE */
       {
         test: /^((?!\.module).)*(s[ac]|c)ss$/i,
         use: [
@@ -142,7 +117,7 @@ module.exports = {
           'sass-loader',
         ],
       },
-      // IMAGES
+      /* IMAGES */
       {
         test: /\.(png|jpg|jpeg|gif|webp)$/i,
         type: 'asset/resource',
@@ -150,7 +125,7 @@ module.exports = {
           filename: 'img/[name][ext]',
         },
       },
-      // SVG
+      /* SVG */
       {
         test: /\.svg$/i,
         type: 'asset/resource',
@@ -158,7 +133,7 @@ module.exports = {
           filename: 'svg/[name][ext]',
         },
       },
-      // FONTS
+      /* FONTS */
       {
         test: /\.(woff(2)?|ttf|eot)$/i,
         type: 'asset/resource',
@@ -168,4 +143,18 @@ module.exports = {
       },
     ],
   },
+
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    alias,
+  },
+
+  plugins: [
+    new HTMLWebpackPlugin({
+      template: paths.template,
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+    }),
+  ],
 };

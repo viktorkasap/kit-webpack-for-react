@@ -1,13 +1,13 @@
-install:
+install-npm:
 	npm ci || npm install
 
-rm-rf-css:
-	rm -rf public/css
+install-yarn:
+	yarn install --frozen-lockfile || yarn install
 
-rm-rf-js:
-	rm -rf public/js
+rm-rf-dist:
+	rm -rf dist
 
-server:
+start:
 	NODE_ENV=development npx webpack serve
 
 pretty:
@@ -18,12 +18,8 @@ lint:
 
 pre-commit: pretty lint
 
-build-prod: rm-rf-css rm-rf-js pretty lint
+build-prod: rm-rf-dist pretty lint
 	NODE_ENV=production npx webpack --mode production
 
-build-dev: rm-rf-css rm-rf-js
+build-dev: rm-rf-dist pretty lint
 	NODE_ENV=development npx webpack --mode development
-
-watch: rm-rf-css rm-rf-js
-	NODE_ENV=development npx webpack --watch
-
