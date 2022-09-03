@@ -1,0 +1,8 @@
+.div {
+  display: grid;
+  width: 100px;
+  height: 100px;
+  transition: all 0.5s;
+  user-select: none;
+  background: linear-gradient(to bottom, white, black);
+}

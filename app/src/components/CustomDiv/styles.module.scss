@@ -1,0 +1,10 @@
+.customDiv {
+  display: grid;
+  width: 200px;
+  height: 200px;
+  align-items: center;
+  color: red;
+  transition: all 0.5s;
+  user-select: none;
+  background: linear-gradient(to bottom, white, black);
+}

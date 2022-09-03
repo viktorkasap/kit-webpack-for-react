@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import { TitleH1 } from '@app/components';
+import '@app/assets/scss/styles.scss';
+
+import { TitleH1, CustomDiv } from '@app/components';
 import {
   Container,
   Button,
@@ -91,6 +93,12 @@ const App = () => {
       <DivPrefixer>
         <P>Auto prefix</P>
       </DivPrefixer>
+
+      <div className="div">
+        <P>Auto prefix SCSS</P>
+      </div>
+
+      <CustomDiv />
     </Container>
   );
 };
