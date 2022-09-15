@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import '@app/assets/scss/styles.scss';
-
-import { TitleH1, CustomDiv } from '@app/components';
+// eslint-disable-next-line import/order
 import {
   Container,
   Button,
@@ -21,6 +19,9 @@ import {
   TextDanger,
   DivPrefixer,
 } from '@app/styled';
+import '@app/assets/scss/styles.scss';
+
+import { TitleH1, CustomDiv } from '@app/components';
 
 const App = () => {
   const [count, setCount] = useState(0);

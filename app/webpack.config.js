@@ -4,6 +4,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const mode = process.env.NODE_ENV;
+const isProductionMode = mode === 'production';
 
 const paths = {
   src: path.resolve(__dirname, 'src'),
@@ -35,9 +36,9 @@ const babelPlugins = [
 module.exports = {
   mode,
 
-  target: mode === 'production' ? 'browserslist' : 'web',
+  target: isProductionMode ? 'browserslist' : 'web',
 
-  devtool: 'source-map',
+  devtool: !isProductionMode && 'source-map',
 
   devServer: {
     hot: true,
