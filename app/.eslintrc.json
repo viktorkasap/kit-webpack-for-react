@@ -8,6 +8,7 @@
       "version": "detect"
     }
   },
+  "ignorePatterns": ["**/*.css", "**/*.scss"],
   "extends": [
     "plugin:react/recommended",
     "standard",

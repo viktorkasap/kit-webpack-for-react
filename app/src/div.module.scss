@@ -1,0 +1,9 @@
+.div {
+  width: 200px;
+  border: 5px solid red;
+  height: 200px;
+  display: grid;
+  transition: all 0.5s;
+  user-select: none;
+  background: linear-gradient(to bottom, white, black);
+}

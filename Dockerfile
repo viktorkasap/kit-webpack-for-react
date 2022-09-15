@@ -32,6 +32,8 @@ ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 
 RUN npm install -g npm@8.12.2
 
+RUN npm install --global yarn
+
 RUN export DOCKER_SCAN_SUGGEST=false
 
 EXPOSE ${PORT_1}

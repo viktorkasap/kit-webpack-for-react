@@ -5,6 +5,7 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const path = require('path');
 
 const mode = process.env.NODE_ENV;
+const isProductionMode = mode === 'production';
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
@@ -34,9 +35,9 @@ const babelPlugins = [
 module.exports = {
   mode,
 
-  target: mode === 'production' ? 'browserslist' : 'web',
+  devtool: !isProductionMode && 'source-map',
 
-  devtool: 'source-map',
+  target: isProductionMode ? 'browserslist' : 'web',
 
   devServer: {
     hot: true,

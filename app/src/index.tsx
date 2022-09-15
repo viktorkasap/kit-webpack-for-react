@@ -21,6 +21,8 @@ import {
 
 import { TitleH1 } from '@components'; // OR @app/component
 
+import styles from './div.module.scss';
+
 const App = () => {
   const [count, setCount] = useState(0);
   return (
@@ -93,6 +95,8 @@ const App = () => {
       <DivPrefixer>
         <P>Auto prefix</P>
       </DivPrefixer>
+
+      <div className={styles.div}></div>
     </Container>
   );
 };
